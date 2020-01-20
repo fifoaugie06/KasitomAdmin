@@ -15,24 +15,31 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
+            android:layout_marginTop="5dp"
             android:id="@+id/bt_delete_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:text="Delete"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_arti" />
 
         <Button
             android:id="@+id/bt_edit_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
             android:text="Update"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_arti" />
 
         <EditText
+            android:layout_marginTop="20dp"
+            android:textColor="#999999"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
             android:id="@+id/tv_judul"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,6 +49,7 @@
             tools:text="adas" />
 
         <EditText
+            android:layout_marginTop="10dp"
             android:id="@+id/tv_arti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +58,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_judul"
-            tools:text="adas" />
+            />
 
         <TextView
             android:id="@+id/textView"

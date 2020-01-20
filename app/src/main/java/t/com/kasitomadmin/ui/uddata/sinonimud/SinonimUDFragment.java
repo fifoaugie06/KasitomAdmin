@@ -1,4 +1,4 @@
-package t.com.kasitomadmin.ui.uddata.updatedata;
+package t.com.kasitomadmin.ui.uddata.sinonimud;
 
 import android.app.Activity;
 import android.content.Intent;

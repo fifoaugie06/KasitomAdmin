@@ -58,76 +58,8 @@ public class AdapterAntonimRead extends RecyclerView.Adapter<AdapterAntonimRead.
         final String judul = daftarAntonim.get(position).getJudul();
         final String arti = daftarAntonim.get(position).getArti();
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                final Dialog dialog;
-                dialog = new Dialog(context);
-                dialog.setContentView(R.layout.dialog_view);
-                dialog.show();
-                final Button edtBtn = dialog.findViewById(R.id.bt_edit_data);
-                final Button dltBtn = dialog.findViewById(R.id.bt_delete_data);
-                final EditText tvJudul, tvArti;
-
-                Window window = dialog.getWindow();
-                window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                tvJudul = dialog.findViewById(R.id.tv_judul);
-                tvArti = dialog.findViewById(R.id.tv_arti);
-
-                tvJudul.setText(judul);
-
-                edtBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                        dataKamus dataKamus = new dataKamus();
-                        dataKamus.setJudul(tvJudul.getText().toString());
-                        dataKamus.setArti(tvArti.getText().toString());
-                        dataKamus.setKey(daftarAntonim.get(position).getKey());
-                        updateKamus(dataKamus);
-                    }
-                });
-
-                dltBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                        deleteKamus(daftarAntonim.get(position).getKey());
-                    }
-                });
-                return true;
-            }
-        });
         holder.tvJudul.setText(judul);
         holder.tvArti.setText(arti);
-    }
-
-    private void deleteKamus(String key) {
-        database = FirebaseDatabase.getInstance().getReference();
-        database.child("antonim")
-                .child(key)
-                .removeValue()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "Berhasil Di Hapus", Toast.LENGTH_LONG).show();
-                    }
-                });
-    }
-
-
-    private void updateKamus(dataKamus dataKamus) {
-        database = FirebaseDatabase.getInstance().getReference();
-        database.child("antonim")
-                .child(dataKamus.getKey())
-                .setValue(dataKamus)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "Berhasil Di Update", Toast.LENGTH_LONG).show();
-                    }
-                });
     }
 
     @Override

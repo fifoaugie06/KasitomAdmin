@@ -1,8 +1,7 @@
-package t.com.kasitomadmin.ui.uddata.antonimud;
+package t.com.kasitomadmin.ui.uddata.sinonimud;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,30 +24,29 @@ import java.util.ArrayList;
 import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataKamus;
 
-public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.ViewHolder> {
+public class AdapterSinonimUD extends RecyclerView.Adapter<AdapterSinonimUD.ViewHolder> {
 
-    private ArrayList<dataKamus> daftarAntonim;
+    private ArrayList<dataKamus> daftarSinonim;
     private Context context;
     private DatabaseReference database;
 
-    public AdapterAntonimUD(ArrayList<dataKamus> inputDatas, Context c){
-        daftarAntonim = inputDatas;
+    public AdapterSinonimUD(ArrayList<dataKamus> inputDatas, Context c) {
+        daftarSinonim = inputDatas;
         context = c;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_data, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_data, parent, false);
         ViewHolder vh = new ViewHolder(view);
-
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        final String judul = daftarAntonim.get(position).getJudul();
-        final String arti = daftarAntonim.get(position).getArti();
+        final String judul = daftarSinonim.get(position).getJudul();
+        final String arti = daftarSinonim.get(position).getArti();
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -76,7 +74,7 @@ public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.View
                         dataKamus dataKamus = new dataKamus();
                         dataKamus.setJudul(tvJudul.getText().toString());
                         dataKamus.setArti(tvArti.getText().toString());
-                        dataKamus.setKey(daftarAntonim.get(position).getKey());
+                        dataKamus.setKey(daftarSinonim.get(position).getKey());
                         updateKamus(dataKamus);
                     }
                 });
@@ -85,7 +83,7 @@ public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.View
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
-                        deleteKamus(daftarAntonim.get(position).getKey());
+                        deleteKamus(daftarSinonim.get(position).getKey());
                     }
                 });
                 return true;
@@ -97,7 +95,7 @@ public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.View
 
     private void deleteKamus(String key) {
         database = FirebaseDatabase.getInstance().getReference();
-        database.child("antonim")
+        database.child("sinonim")
                 .child(key)
                 .removeValue()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -108,10 +106,9 @@ public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.View
                 });
     }
 
-
     private void updateKamus(dataKamus dataKamus) {
         database = FirebaseDatabase.getInstance().getReference();
-        database.child("antonim")
+        database.child("sinonim")
                 .child(dataKamus.getKey())
                 .setValue(dataKamus)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -122,17 +119,14 @@ public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.View
                 });
     }
 
-    private boolean isEmpty(String s) {
-        return TextUtils.isEmpty(s);
-    }
-
     @Override
     public int getItemCount() {
-        return daftarAntonim.size();
+        return daftarSinonim.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvJudul, tvArti;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvJudul = itemView.findViewById(R.id.tv_judul);

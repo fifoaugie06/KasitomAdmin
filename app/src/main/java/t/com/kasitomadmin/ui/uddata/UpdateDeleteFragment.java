@@ -15,7 +15,8 @@ import com.google.android.material.tabs.TabLayout;
 import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.ui.adapter.SectionPagerAdapter;
 import t.com.kasitomadmin.ui.uddata.antonimud.AntonimUDFragment;
-import t.com.kasitomadmin.ui.uddata.updatedata.SinonimUDFragment;
+import t.com.kasitomadmin.ui.uddata.globalchat.GlobalChatUDFragment;
+import t.com.kasitomadmin.ui.uddata.sinonimud.SinonimUDFragment;
 
 
 public class UpdateDeleteFragment extends Fragment {
@@ -72,7 +73,7 @@ public class UpdateDeleteFragment extends Fragment {
 
         adapter.addFragment(new AntonimUDFragment(), "Antonim");
         adapter.addFragment(new SinonimUDFragment(), "Sinonim");
-
+        adapter.addFragment(new GlobalChatUDFragment(), "Global Chat");
 
         viewPager.setAdapter(adapter);
     }
