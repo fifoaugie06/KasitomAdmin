@@ -2,6 +2,7 @@ package t.com.kasitomadmin.ui.createdata;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -47,11 +49,11 @@ public class AntonimCreateFragment extends Fragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!isEmpty(edtJudul.getText().toString()) && !isEmpty(edtArti.getText().toString())){
+                if (!isEmpty(edtJudul.getText().toString()) && !isEmpty(edtArti.getText().toString())) {
                     submitAntonim(new dataKamus(edtJudul.getText().toString(), edtArti.getText().toString()));
-                }else if (isEmpty(edtJudul.getText().toString())){
+                } else if (isEmpty(edtJudul.getText().toString())) {
                     edtJudul.setError("Tidak Boleh Kosong");
-                }else if (isEmpty(edtArti.getText().toString())){
+                } else if (isEmpty(edtArti.getText().toString())) {
                     edtArti.setError("Tidak Boleh Kosong");
                 }
             }
@@ -60,7 +62,9 @@ public class AntonimCreateFragment extends Fragment {
     }
 
     private void submitAntonim(dataKamus antonim) {
-        database.child("antonim").push().setValue(antonim).addOnSuccessListener((Activity) view.getContext(), new OnSuccessListener<Void>() {
+        database.child("antonim")
+                .push()
+                .setValue(antonim).addOnSuccessListener((Activity) view.getContext(), new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 edtJudul.setText("");
@@ -70,7 +74,24 @@ public class AntonimCreateFragment extends Fragment {
         });
     }
 
-    private boolean isEmpty(String s){
+    private boolean isEmpty(String s) {
         return TextUtils.isEmpty(s);
+    }
+
+    private void updateData(dataKamus dataKamus) {
+        database.child("antonim") //akses parent index, ibaratnya seperti nama tabel
+                .child(dataKamus.getKey()) //select barang berdasarkan key
+                .setValue(dataKamus) //set value barang yang baru
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getContext(), "berhasil update", Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    public static Intent getActIntent(Activity activity) {
+        // kode untuk pengambilan Intent
+        return new Intent(activity, AntonimCreateFragment.class);
     }
 }

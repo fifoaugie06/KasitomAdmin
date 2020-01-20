@@ -1,16 +1,15 @@
-package t.com.kasitomadmin.ui.readdata.antonim;
+package t.com.kasitomadmin.ui.uddata.antonimud;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,7 +22,7 @@ import java.util.ArrayList;
 import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataKamus;
 
-public class AntonimReadFragment extends Fragment {
+public class AntonimUDFragment extends Fragment {
     private DatabaseReference database;
     private RecyclerView rvView;
     private RecyclerView.Adapter adapter;
@@ -54,7 +53,7 @@ public class AntonimReadFragment extends Fragment {
                     daftarAntonim.add(dataAntonim);
                 }
 
-                adapter = new AdapterAntonimRead(daftarAntonim, getContext());
+                adapter = new AdapterAntonimUD(daftarAntonim, getContext());
                 rvView.setAdapter(adapter);
             }
 
@@ -68,6 +67,6 @@ public class AntonimReadFragment extends Fragment {
     }
 
     public static Intent getActIntent(Activity activity) {
-        return new Intent(activity, AntonimReadFragment.class);
+        return new Intent(activity, AntonimUDFragment.class);
     }
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin">
+
+    <EditText
+        android:id="@+id/inp_Judul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:hint="@string/MasukkanJudul"
+        android:maxLines="1"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <EditText
+        android:id="@+id/inp_Arti"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:lines="3"
+        android:maxLines="3"
+        android:hint="@string/MasukkanArti"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/inp_Judul"
+        app:layout_constraintStart_toStartOf="@+id/inp_Judul"
+        app:layout_constraintTop_toBottomOf="@+id/inp_Judul" />
+
+    <Button
+        android:layout_marginTop="32dp"
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/inp_Arti"
+        app:layout_constraintStart_toStartOf="@+id/inp_Arti"
+        app:layout_constraintTop_toBottomOf="@+id/inp_Arti"
+        android:text="@string/Submit"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

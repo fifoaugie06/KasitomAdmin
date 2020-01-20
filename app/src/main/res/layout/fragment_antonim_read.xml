@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp"
+    android:paddingTop="8dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="@dimen/design_bottom_navigation_height"
     android:layout_gravity="center_horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.readdata.antonim.AntonimReadFragment">
