@@ -57,8 +57,8 @@ public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.View
                 dialog = new Dialog(context);
                 dialog.setContentView(R.layout.dialog_view);
                 dialog.show();
-                final Button edtBtn = dialog.findViewById(R.id.bt_edit_data);
-                final Button dltBtn = dialog.findViewById(R.id.bt_delete_data);
+                final Button edtBtn = dialog.findViewById(R.id.bt_cancel);
+                final Button dltBtn = dialog.findViewById(R.id.bt_ok);
                 final EditText tvJudul, tvArti;
 
                 Window window = dialog.getWindow();

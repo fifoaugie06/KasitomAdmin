@@ -7,7 +7,7 @@
     android:padding="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,62 +15,45 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:layout_marginTop="5dp"
             android:id="@+id/bt_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
             android:backgroundTint="@color/colorAccent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_arti" />
+            android:text="Ok"
+            app:layout_constraintBottom_toBottomOf="@+id/bt_cancel"
+            app:layout_constraintEnd_toStartOf="@+id/bt_cancel"
+            app:layout_constraintTop_toTopOf="@+id/bt_cancel" />
 
         <Button
             android:id="@+id/bt_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Update"
+            android:layout_marginTop="8dp"
+            android:text="Cancel"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_arti" />
+            app:layout_constraintTop_toBottomOf="@id/tv_konfirmasi" />
 
-        <EditText
-            android:layout_marginTop="20dp"
+        <TextView
+            android:layout_marginTop="6dp"
             android:textColor="#999999"
-            android:clickable="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:cursorVisible="false"
-            android:id="@+id/tv_judul"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_konfirmasi"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/textView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="adas" />
+            tools:text="more than 25 items will be permanently deleted"/>
 
-        <EditText
-            android:layout_marginTop="10dp"
-            android:id="@+id/tv_arti"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="2"
-            android:maxLines="3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_judul"
-            />
 
         <TextView
+            android:textColor="@android:color/black"
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/updatedata"
-            android:textAllCaps="true"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:text="Are you sure ?"
+            android:textAllCaps="false"
+            android:textSize="16sp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

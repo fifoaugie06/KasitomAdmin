@@ -14,7 +14,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.ui.adapter.SectionPagerAdapter;
-import t.com.kasitomadmin.ui.createdata.SinonimCreateFragment;
 import t.com.kasitomadmin.ui.readdata.antonim.AntonimReadFragment;
 import t.com.kasitomadmin.ui.readdata.sinonim.SinonimReadFragment;
 
