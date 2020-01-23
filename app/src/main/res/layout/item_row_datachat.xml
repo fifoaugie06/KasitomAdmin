@@ -14,6 +14,7 @@
         android:padding="6dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerKonten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
@@ -32,7 +33,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Bohong - Jujur" />
 
-
             <TextView
                 android:id="@+id/tv_arti"
                 android:layout_width="match_parent"
@@ -43,7 +43,19 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_judul"
                 tools:text="bviwofnaiwfnawfoaiwaiosmasicfnawnawfwi" />
 
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="9sp"
+                android:layout_marginTop="6dp"
+                app:layout_constraintStart_toStartOf="@+id/tv_arti"
+                app:layout_constraintTop_toBottomOf="@+id/tv_arti"
+                tools:text="7:40 pm" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/tv_photchat"
@@ -52,5 +64,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:background="@color/colorAccent"/>
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

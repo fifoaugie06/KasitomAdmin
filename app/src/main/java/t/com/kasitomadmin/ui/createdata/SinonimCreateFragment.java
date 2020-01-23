@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -60,12 +61,21 @@ public class SinonimCreateFragment extends Fragment {
     }
 
     private void submitSinonim(dataKamus sinonim) {
-        database.child("sinonim").push().setValue(sinonim).addOnSuccessListener((Activity) view.getContext(), new OnSuccessListener<Void>() {
+        database.child("sinonim")
+                .push()
+                .setValue(sinonim)
+                .addOnSuccessListener((Activity) view.getContext(), new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 edtJudul.setText("");
                 edtArti.setText("");
-                Toast.makeText(view.getContext(), "Data Berhasil diInput", LENGTH_SHORT).show();
+                Snackbar.make(getView(), "Data berhasil diinput ke database Sinonim",Snackbar.LENGTH_LONG)
+                        .setAction("OKE", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        }).show();
             }
         });
     }

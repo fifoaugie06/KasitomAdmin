@@ -1,11 +1,14 @@
 package t.com.kasitomadmin.ui.uddata.globalchat;
 
+import java.util.Date;
+
 public class ChatMessage {
     private String messageText;
     private String messageUser;
     private String messageUserId;
     private String messageUserPhotoUri;
     private String key;
+    private long messageUserTime;
 
     public  ChatMessage(){
 
@@ -17,6 +20,7 @@ public class ChatMessage {
          this.messageUserId = messageUserId;
          this.messageUserPhotoUri = messageUserPhotoUri;
          this.key = key;
+         messageUserTime = new Date().getTime();
     }
 
 
@@ -42,5 +46,9 @@ public class ChatMessage {
 
     public String getKey() {
         return key;
+    }
+
+    public long getMessageUserTime() {
+        return messageUserTime;
     }
 }

@@ -10,4 +10,10 @@
     <string name="MasukkanArti">Masukkan Arti</string>
     <string name="Submit">Submit</string>
     <string name="updatedata">Update Data</string>
+    <string name="MasukkanSoal">Masukkan Soal</string>
+    <string name="optionA">Option A</string>
+    <string name="optionB">Option B</string>
+    <string name="optionC">Option C</string>
+    <string name="optionD">Option D</string>
+    <string name="pilihOption">Jawaban Benar ?</string>
 </resources>

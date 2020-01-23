@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import t.com.kasitomadmin.R;
@@ -43,6 +44,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         final String photoUri = chatMessages.get(position).getMessageUserPhotoUri();
         final String key = chatMessages.get(position).getKey();
 
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+        String date = formatter.format(chatMessages.get(position).getMessageUserTime());
+
+        holder.tvTime.setText(date);
         holder.tvNama.setText(nama);
         holder.tvChat.setText(chat);
         Picasso.get()
@@ -59,12 +64,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNama, tvChat;
+        TextView tvNama, tvChat, tvTime;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNama = itemView.findViewById(R.id.tv_judul);
             tvChat = itemView.findViewById(R.id.tv_arti);
             tvPhoto = itemView.findViewById(R.id.tv_photchat);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
     }
 }

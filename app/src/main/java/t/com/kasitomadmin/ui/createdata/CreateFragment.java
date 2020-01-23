@@ -75,6 +75,7 @@ public class CreateFragment extends Fragment {
 
         adapter.addFragment(new AntonimCreateFragment(), "Antonim");
         adapter.addFragment(new SinonimCreateFragment(), "Sinonim");
+        adapter.addFragment(new QuizCreateFragment(), "Quiz");
 
         viewPager.setAdapter(adapter);
     }

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,7 +59,7 @@ public class GlobalChatUDFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 chatMessages = new ArrayList<>();
 
-                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
                     ChatMessage dataChat = noteDataSnapshot.getValue(ChatMessage.class);
 
                     dataChat.setKey(noteDataSnapshot.getKey());
@@ -77,39 +78,64 @@ public class GlobalChatUDFragment extends Fragment {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog;
-                final TextView tv_konfirmasi;
-                final Button bt_Ok, bt_Cancel;
+                if (chatMessages.size() != 0) {
 
-                dialog = new Dialog(getContext());
-                dialog.setContentView(R.layout.dialog_view_delete);
-                dialog.show();
+                    final Dialog dialog;
+                    final TextView tv_konfirmasi;
+                    final Button bt_Ok, bt_Cancel;
 
-                Window window = dialog.getWindow();
-                window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    dialog = new Dialog(getContext());
+                    dialog.setContentView(R.layout.dialog_view_delete);
+                    dialog.show();
 
-                tv_konfirmasi = dialog.findViewById(R.id.tv_konfirmasi);
-                bt_Ok = dialog.findViewById(R.id.bt_ok);
-                bt_Cancel = dialog.findViewById(R.id.bt_cancel);
+                    Window window = dialog.getWindow();
+                    window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-                tv_konfirmasi.setText("More than " + chatMessages.size() + " items will be permanently deleted");
+                    tv_konfirmasi = dialog.findViewById(R.id.tv_konfirmasi);
+                    bt_Ok = dialog.findViewById(R.id.bt_ok);
+                    bt_Cancel = dialog.findViewById(R.id.bt_cancel);
 
-                bt_Ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+                    final int jumlahChat = chatMessages.size();
+                    tv_konfirmasi.setText("More than " + jumlahChat + " items will be permanently deleted");
 
-                    }
-                });
+                    bt_Ok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(final View view) {
+                            database.child("globalchat")
+                                    .removeValue()
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Snackbar.make(getView(), jumlahChat + " Pesan berhasil di hapus", Snackbar.LENGTH_LONG)
+                                                    .setAction("OKE", new View.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(View view) {
 
-                bt_Cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
+                                                        }
+                                                    }).show();
+                                            dialog.dismiss();
+                                        }
+                                    });
+                        }
+                    });
+
+                    bt_Cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+                } else {
+                    Snackbar.make(getView(), "Tidak ada Data !!!", Snackbar.LENGTH_LONG)
+                            .setAction("OKE", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                }
+                            }).show();
+                }
             }
         });
-
         return view;
     }
 
