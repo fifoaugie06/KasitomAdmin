@@ -1,8 +1,15 @@
 package t.com.kasitomadmin.model;
 
-public class dataQuiz {
+import java.io.Serializable;
+
+public class dataQuiz implements Serializable {
     public String soal;
     public String optionA, optionB, optionC, optionD, jawaban;
+    public String key;
+
+    public dataQuiz(){
+
+    }
 
     public dataQuiz(String soal, String optionA, String optionB, String optionC, String optionD, String jawaban) {
         this.soal = soal;
@@ -35,5 +42,13 @@ public class dataQuiz {
 
     public String getJawaban() {
         return jawaban;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
     }
 }
