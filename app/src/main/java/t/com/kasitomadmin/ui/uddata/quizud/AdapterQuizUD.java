@@ -74,14 +74,11 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
         holder.tvSoal.setText(((position + 1) + ". " + soal).toUpperCase());
 
-        if (optionA.equals(jawaban)) {
             holder.tvOptionA.setText(optionA);
-            holder.tvOptionA.setTypeface(boldTypeface);
-        }else {
+            holder.tvOptionB.setText(optionB);
+            holder.tvOptionC.setText(optionC);
+            holder.tvOptionD.setText(optionD);
 
-        holder.tvOptionB.setText(optionB);
-        holder.tvOptionC.setText(optionC);
-        holder.tvOptionD.setText(optionD);}
     }
 
     private void deleteKamus(String key) {
