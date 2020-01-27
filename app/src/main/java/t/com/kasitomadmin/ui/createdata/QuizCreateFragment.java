@@ -97,7 +97,7 @@ public class QuizCreateFragment extends Fragment {
 
     private void submitQuiz(dataQuiz dataQuiz) {
         database.child("Quiz")
-                .child(String.valueOf(count))
+                .push()
                 .setValue(dataQuiz).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

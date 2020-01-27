@@ -2,6 +2,7 @@ package t.com.kasitomadmin.ui.uddata.quizud;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +33,7 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
     private Context context;
     private DatabaseReference database;
 
-    public AdapterQuizUD(ArrayList<dataQuiz> inputDatas, Context c){
+    public AdapterQuizUD(ArrayList<dataQuiz> inputDatas, Context c) {
         daftarQuiz = inputDatas;
         context = c;
     }
@@ -40,7 +41,7 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_dataquiz, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_dataquiz, parent, false);
         ViewHolder vh = new ViewHolder(view);
 
         return vh;
@@ -54,6 +55,7 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         final String optionC = daftarQuiz.get(position).getOptionC();
         final String optionD = daftarQuiz.get(position).getOptionD();
         final String jawaban = daftarQuiz.get(position).getJawaban();
+        final String key = daftarQuiz.get(position).getKey();
 
         holder.btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,29 +67,35 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         holder.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "COMING SOON", Toast.LENGTH_SHORT).show();
+                deleteKamus(key);
             }
         });
 
-        holder.tvSoal.setText((position+1) + ". " +soal);
-        holder.tvOptionA.setText(optionA);
+        Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
+        holder.tvSoal.setText(((position + 1) + ". " + soal).toUpperCase());
+
+        if (optionA.equals(jawaban)) {
+            holder.tvOptionA.setText(optionA);
+            holder.tvOptionA.setTypeface(boldTypeface);
+        }else {
+
         holder.tvOptionB.setText(optionB);
         holder.tvOptionC.setText(optionC);
-        holder.tvOptionD.setText(optionD);
+        holder.tvOptionD.setText(optionD);}
     }
 
-//    private void deleteKamus(String key) {
-//        database = FirebaseDatabase.getInstance().getReference();
-//        database.child("Quiz")
-//                .child(key)
-//                .removeValue()
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Toast.makeText(context, "Berhasil Di Hapus", Toast.LENGTH_LONG).show();
-//                    }
-//                });
-//    }
+    private void deleteKamus(String key) {
+        database = FirebaseDatabase.getInstance().getReference();
+        database.child("Quiz")
+                .child(key)
+                .removeValue()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "Berhasil Di Hapus", Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
 
 
 //    private void updateKamus(dataQuiz dataQuiz) {
@@ -115,6 +123,7 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvSoal, tvOptionA, tvOptionB, tvOptionC, tvOptionD;
         ImageButton btn_edit, btn_delete;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvSoal = itemView.findViewById(R.id.tv_soal);

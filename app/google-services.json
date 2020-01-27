@@ -8,12 +8,73 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:25685967600:android:53983b28f138e8fa227835",
+        "android_client_info": {
+          "package_name": "com.example.kasitom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25685967600-4ibee22c1ldt23au41rbuv3g7f59rudg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kasitom",
+            "certificate_hash": "738c8fbfb211778e681b0f897672132a13a29537"
+          }
+        },
+        {
+          "client_id": "25685967600-iv1323m06gn2886mliflql3089aj08er.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kasitom",
+            "certificate_hash": "742f9803fb13dc4af5c050ff3187122ca9b0b69c"
+          }
+        },
+        {
+          "client_id": "25685967600-kpbfvbmksgsflmethmr0h9sl43po40oo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeGCDWXbu05AzPdBQv3_2wgendLCPsahM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25685967600-kpbfvbmksgsflmethmr0h9sl43po40oo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:25685967600:android:4b2b19413bcdc48a227835",
         "android_client_info": {
           "package_name": "t.com.kasitomadmin"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "25685967600-k2ccfc9r69fn10hu83529om8cdnmelec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "t.com.kasitomadmin",
+            "certificate_hash": "738c8fbfb211778e681b0f897672132a13a29537"
+          }
+        },
+        {
+          "client_id": "25685967600-84iupo0q6hc8mvh1n0tf13v4vtjae24b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "t.com.kasitomadmin",
+            "certificate_hash": "742f9803fb13dc4af5c050ff3187122ca9b0b69c"
+          }
+        },
         {
           "client_id": "25685967600-kpbfvbmksgsflmethmr0h9sl43po40oo.apps.googleusercontent.com",
           "client_type": 3
