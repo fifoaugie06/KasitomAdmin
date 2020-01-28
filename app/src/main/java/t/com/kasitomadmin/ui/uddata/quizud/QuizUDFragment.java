@@ -55,7 +55,7 @@ public class QuizUDFragment extends Fragment {
                     daftarQuiz.add(dataQuiz);
                 }
 
-                adapter = new AdapterQuizUD(daftarQuiz, getContext());
+                adapter = new AdapterQuizUD(daftarQuiz, getActivity());
                 rvView.setAdapter(adapter);
             }
 

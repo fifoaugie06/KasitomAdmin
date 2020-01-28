@@ -1,12 +1,19 @@
 package t.com.kasitomadmin.ui.uddata.quizud;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,7 +33,7 @@ import t.com.kasitomadmin.model.dataQuiz;
 public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder> {
 
     private ArrayList<dataQuiz> daftarQuiz;
-    private Context context;
+    private final Context context;
     private DatabaseReference database;
 
     public AdapterQuizUD(ArrayList<dataQuiz> inputDatas, Context c) {
@@ -57,16 +65,16 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
 
         Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
 
-        if (optionA.equals(jawaban)){
+        if (optionA.equals(jawaban)) {
             setViewHolder(holder, optionA, optionB, optionC, optionD);
             holder.tvOptionA.setTypeface(boldTypeface);
-        }else if (optionB.equals(jawaban)){
+        } else if (optionB.equals(jawaban)) {
             setViewHolder(holder, optionA, optionB, optionC, optionD);
             holder.tvOptionB.setTypeface(boldTypeface);
-        }else if (optionC.equals(jawaban)){
+        } else if (optionC.equals(jawaban)) {
             setViewHolder(holder, optionA, optionB, optionC, optionD);
             holder.tvOptionC.setTypeface(boldTypeface);
-        }else {
+        } else {
             setViewHolder(holder, optionA, optionB, optionC, optionD);
             holder.tvOptionD.setTypeface(boldTypeface);
         }
@@ -93,17 +101,48 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         holder.tvOptionD.setText(optionD);
     }
 
-    private void deleteKamus(String key) {
-        database = FirebaseDatabase.getInstance().getReference();
-        database.child("Quiz")
-                .child(key)
-                .removeValue()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(context, "Berhasil Di Hapus", Toast.LENGTH_LONG).show();
-                    }
-                });
+    private void deleteKamus(final String key) {
+        final Dialog dialog;
+        final TextView tv_konfirmasi;
+        final Button bt_Ok, bt_Cancel;
+
+        dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_view_delete);
+        dialog.show();
+
+        final Window window = dialog.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        tv_konfirmasi = dialog.findViewById(R.id.tv_konfirmasi);
+        bt_Ok = dialog.findViewById(R.id.bt_ok);
+        bt_Cancel = dialog.findViewById(R.id.bt_cancel);
+
+        tv_konfirmasi.setText("Items will be permanently deleted");
+
+        bt_Ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view2) {
+                //Log.i("apaa", String.valueOf(view2));
+                database = FirebaseDatabase.getInstance().getReference();
+                database.child("Quiz")
+                        .child(key)
+                        .removeValue()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(context, "Berhasil di hapus", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }
+                        });
+            }
+        });
+
+        bt_Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
     }
 
 
