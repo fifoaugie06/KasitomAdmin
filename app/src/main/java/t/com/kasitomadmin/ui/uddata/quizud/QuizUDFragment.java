@@ -22,9 +22,6 @@ import java.util.ArrayList;
 import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataQuiz;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class QuizUDFragment extends Fragment {
     private View view;
     private RecyclerView rvView;

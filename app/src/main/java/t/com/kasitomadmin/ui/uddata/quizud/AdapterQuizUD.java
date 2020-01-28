@@ -1,17 +1,12 @@
 package t.com.kasitomadmin.ui.uddata.quizud;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +52,25 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         final String jawaban = daftarQuiz.get(position).getJawaban();
         final String key = daftarQuiz.get(position).getKey();
 
+        holder.tvNomor.setText((position + 1) + ". ");
+        holder.tvSoal.setText(soal);
+
+        Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
+
+        if (optionA.equals(jawaban)){
+            setViewHolder(holder, optionA, optionB, optionC, optionD);
+            holder.tvOptionA.setTypeface(boldTypeface);
+        }else if (optionB.equals(jawaban)){
+            setViewHolder(holder, optionA, optionB, optionC, optionD);
+            holder.tvOptionB.setTypeface(boldTypeface);
+        }else if (optionC.equals(jawaban)){
+            setViewHolder(holder, optionA, optionB, optionC, optionD);
+            holder.tvOptionC.setTypeface(boldTypeface);
+        }else {
+            setViewHolder(holder, optionA, optionB, optionC, optionD);
+            holder.tvOptionD.setTypeface(boldTypeface);
+        }
+
         holder.btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,15 +84,13 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
                 deleteKamus(key);
             }
         });
+    }
 
-        Typeface boldTypeface = Typeface.defaultFromStyle(Typeface.BOLD);
-        holder.tvSoal.setText(((position + 1) + ". " + soal).toUpperCase());
-
-            holder.tvOptionA.setText(optionA);
-            holder.tvOptionB.setText(optionB);
-            holder.tvOptionC.setText(optionC);
-            holder.tvOptionD.setText(optionD);
-
+    private void setViewHolder(ViewHolder holder, String optionA, String optionB, String optionC, String optionD) {
+        holder.tvOptionA.setText(optionA);
+        holder.tvOptionB.setText(optionB);
+        holder.tvOptionC.setText(optionC);
+        holder.tvOptionD.setText(optionD);
     }
 
     private void deleteKamus(String key) {
@@ -118,7 +130,7 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvSoal, tvOptionA, tvOptionB, tvOptionC, tvOptionD;
+        TextView tvNomor, tvSoal, tvOptionA, tvOptionB, tvOptionC, tvOptionD;
         ImageButton btn_edit, btn_delete;
 
         public ViewHolder(@NonNull View itemView) {
@@ -128,6 +140,7 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
             tvOptionB = itemView.findViewById(R.id.edt_optionB);
             tvOptionC = itemView.findViewById(R.id.edt_optionC);
             tvOptionD = itemView.findViewById(R.id.edt_optionD);
+            tvNomor = itemView.findViewById(R.id.tv_nomor);
 
             btn_edit = itemView.findViewById(R.id.btn_edit);
             btn_delete = itemView.findViewById(R.id.btn_delete);
