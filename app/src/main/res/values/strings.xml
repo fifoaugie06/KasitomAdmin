@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KasitomAdmin</string>
+    <string name="app_name">Kasitom ADMIN</string>
     <string name="title_create">Input Data</string>
     <string name="title_read">Read Data</string>
     <string name="title_ud">U/D Data</string>
