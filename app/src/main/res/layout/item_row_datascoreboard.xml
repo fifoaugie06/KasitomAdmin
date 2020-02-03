@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingTop="8dp"
+    android:paddingTop="6dp"
     android:paddingStart="12dp"
     android:paddingEnd="12dp"
-    android:paddingBottom="4dp"
+    android:paddingBottom="2dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,15 +28,15 @@
 
             <ImageView
                 android:id="@+id/img_photo"
-                android:layout_width="70dp"
-                android:layout_height="70dp"/>
+                android:layout_width="50dp"
+                android:layout_height="50dp"/>
 
         </androidx.cardview.widget.CardView>
 
 
         <TextView
             android:layout_marginTop="6dp"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:id="@+id/tv_nama"
@@ -49,7 +49,7 @@
 
         <TextView
             android:layout_marginTop="6dp"
-            android:textSize="11sp"
+            android:textSize="9sp"
             android:id="@+id/tv_tanggal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,6 +59,7 @@
             tools:text="fifo augie" />
 
         <TextView
+            android:textSize="12sp"
             android:textStyle="bold"
             android:layout_marginTop="6dp"
             android:textAllCaps="true"
@@ -71,6 +72,7 @@
             android:text="Correct" />
 
         <TextView
+            android:textSize="12sp"
             android:textColor="#43A047"
             android:textStyle="bold"
             android:textAllCaps="true"
@@ -84,6 +86,7 @@
             android:text="4" />
 
         <TextView
+            android:textSize="12sp"
             android:textStyle="bold"
             android:textAllCaps="true"
             android:id="@+id/tv_wrong"
@@ -96,6 +99,7 @@
             android:text="Wrong" />
 
         <TextView
+            android:textSize="12sp"
             android:textColor="#E53935"
             android:textStyle="bold"
             android:textAllCaps="true"
@@ -117,14 +121,14 @@
             android:text="Score"
             android:textAllCaps="true"
             android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
+            android:textSize="9sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_marginBottom="10dp"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:id="@+id/tv_score_value"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_score"

@@ -1,4 +1,4 @@
-package t.com.kasitomadmin.ui.readdata.scoreboard;
+package t.com.kasitomadmin.ui.uddata.quizud;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,15 +16,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import t.com.kasitomadmin.R;
-import t.com.kasitomadmin.model.dataQuiz;
 import t.com.kasitomadmin.model.dataScoreBoard;
 
-class AdapterScoreboardQuiz extends RecyclerView.Adapter<AdapterScoreboardQuiz.ViewHolder> {
+public class AdapterDialogScoreboard extends RecyclerView.Adapter<AdapterDialogScoreboard.ViewHolder> {
     private ArrayList<dataScoreBoard> dataScoreBoards;
     private Context context;
     private ImageView img_photo;
 
-    public AdapterScoreboardQuiz(ArrayList<dataScoreBoard> dataScoreBoards, Context context) {
+    public AdapterDialogScoreboard(ArrayList<dataScoreBoard> dataScoreBoards, Context context) {
         this.dataScoreBoards = dataScoreBoards;
         this.context = context;
     }
