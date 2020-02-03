@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingBottom="52dp"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.uddata.quizud.QuizUDFragment">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.readdata.scoreboard.ScoreboardReadFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_quiz"
+        android:id="@+id/rv_scoreboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_row_dataquiz"/>
+        tools:listitem="@layout/item_row_datascoreboard"/>
 
 </FrameLayout>
