@@ -163,8 +163,5 @@ public class QuizUDFragment extends Fragment {
                         });
             }
         });
-
-        tvSoal = dialog.findViewById(R.id.tv_countMember);
-        tvSoal.setText("Total ");
     }
 }

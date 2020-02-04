@@ -9,16 +9,22 @@
     app:cardUseCompatPadding="true"
     app:cardCornerRadius="8dp"
     android:foreground="?android:attr/selectableItemBackground">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/colorPrimary"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
+            android:textStyle="bold"
             android:id="@+id/tv_judul"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textColor="@android:color/black"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/white"
             android:textSize="16sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +33,7 @@
             tools:text="Bohong - Jujur" />
 
         <TextView
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:id="@+id/tv_arti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
