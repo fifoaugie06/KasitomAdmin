@@ -68,6 +68,7 @@ public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.View
                 tvArti = dialog.findViewById(R.id.tv_arti);
 
                 tvJudul.setText(judul);
+                tvArti.setText(arti);
 
                 edtBtn.setOnClickListener(new View.OnClickListener() {
                     @Override

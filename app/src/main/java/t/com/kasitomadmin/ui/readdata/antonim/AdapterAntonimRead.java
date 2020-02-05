@@ -1,12 +1,15 @@
 package t.com.kasitomadmin.ui.readdata.antonim;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +38,7 @@ public class AdapterAntonimRead extends RecyclerView.Adapter<AdapterAntonimRead.
         return vh;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final String judul = daftarAntonim.get(position).getJudul();
@@ -42,6 +46,13 @@ public class AdapterAntonimRead extends RecyclerView.Adapter<AdapterAntonimRead.
 
         holder.tvJudul.setText(judul);
         holder.tvArti.setText(arti);
+
+        boolean isExpanded = daftarAntonim.get(position).isExpanded();
+        if (isExpanded){
+            holder.expandableLayout.setVisibility(View.VISIBLE);
+        }else {
+            holder.expandableLayout.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -50,11 +61,22 @@ public class AdapterAntonimRead extends RecyclerView.Adapter<AdapterAntonimRead.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        ConstraintLayout expandableLayout;
         TextView tvJudul, tvArti;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvJudul = itemView.findViewById(R.id.tv_judul);
             tvArti = itemView.findViewById(R.id.tv_arti);
+            expandableLayout = itemView.findViewById(R.id.expandableLayout);
+
+            tvJudul.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dataKamus dataKamus = daftarAntonim.get(getAdapterPosition());
+                    dataKamus.setExpanded(!dataKamus.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
         }
     }
 }

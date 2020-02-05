@@ -66,6 +66,7 @@ public class AdapterSinonimUD extends RecyclerView.Adapter<AdapterSinonimUD.View
                 tvArti = dialog.findViewById(R.id.tv_arti);
 
                 tvJudul.setText(judul);
+                tvArti.setText(arti);
 
                 edtBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -123,6 +124,8 @@ public class AdapterSinonimUD extends RecyclerView.Adapter<AdapterSinonimUD.View
     public int getItemCount() {
         return daftarSinonim.size();
     }
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvJudul, tvArti;

@@ -6,6 +6,7 @@ public class dataKamus implements Serializable {
     private String judul;
     private String arti;
     private String key;
+    private boolean expanded;
 
     public dataKamus(){
 
@@ -30,6 +31,7 @@ public class dataKamus implements Serializable {
     public dataKamus(String judul, String arti){
         this.judul = judul;
         this.arti = arti;
+        this.expanded = false;
     }
 
     public void setKey(String key) {
@@ -38,6 +40,14 @@ public class dataKamus implements Serializable {
 
     public String getKey() {
         return key;
+    }
+
+    public boolean isExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
     }
 }
 

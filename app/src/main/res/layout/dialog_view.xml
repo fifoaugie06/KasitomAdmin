@@ -35,11 +35,6 @@
 
         <EditText
             android:layout_marginTop="20dp"
-            android:textColor="#999999"
-            android:clickable="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:cursorVisible="false"
             android:id="@+id/tv_judul"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +48,7 @@
             android:id="@+id/tv_arti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="2"
+            android:lines="3"
             android:maxLines="3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
