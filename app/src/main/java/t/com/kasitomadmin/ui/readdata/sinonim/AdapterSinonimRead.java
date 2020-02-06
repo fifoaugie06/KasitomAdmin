@@ -1,6 +1,5 @@
 package t.com.kasitomadmin.ui.readdata.sinonim;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +15,10 @@ import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataKamus;
 
 public class AdapterSinonimRead extends RecyclerView.Adapter<AdapterSinonimRead.ViewHolder> {
-
     private ArrayList<dataKamus> daftarSinonim;
-    private Context context;
 
-    public AdapterSinonimRead(ArrayList<dataKamus> inputDatas, Context c){
+    public AdapterSinonimRead(ArrayList<dataKamus> inputDatas){
         daftarSinonim = inputDatas;
-        context = c;
     }
 
     @NonNull

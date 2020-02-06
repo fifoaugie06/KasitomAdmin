@@ -1,7 +1,5 @@
 package t.com.kasitomadmin.ui.uddata.globalchat;
 
-
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +18,9 @@ import t.com.kasitomadmin.R;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
     private ArrayList<ChatMessage> chatMessages;
-    private Context c;
-    private ImageView tvPhoto;
 
-    public MessageAdapter(ArrayList<ChatMessage> chatMessages, Context context) {
+    public MessageAdapter(ArrayList<ChatMessage> chatMessages) {
         this.chatMessages = chatMessages;
-        c = context;
     }
 
     @NonNull
@@ -42,7 +37,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         final String nama = chatMessages.get(position).getMessageUser();
         final String chat = chatMessages.get(position).getMessageText();
         final String photoUri = chatMessages.get(position).getMessageUserPhotoUri();
-        final String key = chatMessages.get(position).getKey();
 
         SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
         String date = formatter.format(chatMessages.get(position).getMessageUserTime());
@@ -54,8 +48,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                 .load(photoUri)
                 .centerInside()
                 .resize(150, 150)
-                .into(tvPhoto);
-
+                .into(holder.tvPhoto);
     }
 
     @Override
@@ -65,6 +58,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvNama, tvChat, tvTime;
+        ImageView tvPhoto;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNama = itemView.findViewById(R.id.tv_judul);

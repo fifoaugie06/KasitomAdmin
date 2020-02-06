@@ -54,7 +54,7 @@ public class SinonimReadFragment extends Fragment {
                     daftarSinonim.add(dataSinonim);
                 }
 
-                adapter = new AdapterSinonimRead(daftarSinonim, getContext());
+                adapter = new AdapterSinonimRead(daftarSinonim);
                 rvView.setAdapter(adapter);
             }
 
@@ -65,9 +65,5 @@ public class SinonimReadFragment extends Fragment {
         });
 
         return view;
-    }
-
-    public static Intent getActIntent(Activity activity) {
-        return new Intent(activity, SinonimReadFragment.class);
     }
 }

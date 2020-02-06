@@ -17,9 +17,9 @@ import t.com.kasitomadmin.ui.adapter.SectionPagerAdapter;
 
 public class CreateFragment extends Fragment {
 
-    View myFragment;
-    ViewPager viewPager;
-    TabLayout tabLayout;
+    private View myFragment;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     public CreateFragment() {
         // Required empty public constructor

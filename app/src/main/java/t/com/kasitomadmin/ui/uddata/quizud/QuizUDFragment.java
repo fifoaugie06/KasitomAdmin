@@ -1,6 +1,5 @@
 package t.com.kasitomadmin.ui.uddata.quizud;
 
-
 import android.app.Dialog;
 import android.os.Bundle;
 
@@ -19,7 +18,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -101,7 +99,6 @@ public class QuizUDFragment extends Fragment {
 
         final Dialog dialog;
         final Button btnDelete;
-        final TextView tvSoal;
 
         dialog = new Dialog(getContext());
         dialog.setContentView(R.layout.dialog_scoreboard);
@@ -136,7 +133,7 @@ public class QuizUDFragment extends Fragment {
                         }
                     }
                 });
-                adapter = new AdapterDialogScoreboard(daftarScoreBoard, getContext());
+                adapter = new AdapterDialogScoreboard(daftarScoreBoard);
                 rvView.setAdapter(adapter);
             }
 

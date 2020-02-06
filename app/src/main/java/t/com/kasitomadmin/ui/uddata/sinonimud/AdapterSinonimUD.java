@@ -25,7 +25,6 @@ import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataKamus;
 
 public class AdapterSinonimUD extends RecyclerView.Adapter<AdapterSinonimUD.ViewHolder> {
-
     private ArrayList<dataKamus> daftarSinonim;
     private Context context;
     private DatabaseReference database;

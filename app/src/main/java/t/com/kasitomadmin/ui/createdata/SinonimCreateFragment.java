@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -20,8 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataKamus;
-
-import static android.widget.Toast.LENGTH_SHORT;
 
 public class SinonimCreateFragment extends Fragment {
     private DatabaseReference database;
@@ -79,7 +76,6 @@ public class SinonimCreateFragment extends Fragment {
             }
         });
     }
-
     private boolean isEmpty(String s){
         return TextUtils.isEmpty(s);
     }

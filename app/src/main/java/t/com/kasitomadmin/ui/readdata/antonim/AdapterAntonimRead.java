@@ -1,8 +1,5 @@
 package t.com.kasitomadmin.ui.readdata.antonim;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,21 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DatabaseReference;
 import java.util.ArrayList;
 
 import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataKamus;
 
 public class AdapterAntonimRead extends RecyclerView.Adapter<AdapterAntonimRead.ViewHolder> {
-
     private ArrayList<dataKamus> daftarAntonim;
-    private Context context;
-    private DatabaseReference database;
 
-    public AdapterAntonimRead(ArrayList<dataKamus> inputDatas, Context c){
+    public AdapterAntonimRead(ArrayList<dataKamus> inputDatas){
         daftarAntonim = inputDatas;
-        context = c;
     }
 
     @NonNull
@@ -38,7 +30,6 @@ public class AdapterAntonimRead extends RecyclerView.Adapter<AdapterAntonimRead.
         return vh;
     }
 
-    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         final String judul = daftarAntonim.get(position).getJudul();

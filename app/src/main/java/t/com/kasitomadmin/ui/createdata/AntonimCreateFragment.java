@@ -2,7 +2,6 @@ package t.com.kasitomadmin.ui.createdata;
 
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -10,13 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
@@ -24,11 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataKamus;
-import t.com.kasitomadmin.ui.readdata.ReadFragment;
-import t.com.kasitomadmin.ui.readdata.antonim.AntonimReadFragment;
-
-import static android.widget.Toast.LENGTH_LONG;
-import static android.widget.Toast.LENGTH_SHORT;
 
 public class AntonimCreateFragment extends Fragment {
     private DatabaseReference database;
@@ -75,7 +64,7 @@ public class AntonimCreateFragment extends Fragment {
             public void onSuccess(Void aVoid) {
                 edtJudul.setText("");
                 edtArti.setText("");
-                Snackbar.make(getView(), "Data berhasil diinput ke database Antonim",Snackbar.LENGTH_LONG)
+                Snackbar.make(getView(), "Data berhasil diinput ke database Antonim", Snackbar.LENGTH_LONG)
                         .setAction("OKE", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -85,14 +74,7 @@ public class AntonimCreateFragment extends Fragment {
             }
         });
     }
-
     private boolean isEmpty(String s) {
         return TextUtils.isEmpty(s);
-    }
-
-
-    public static Intent getActIntent(Activity activity) {
-        // kode untuk pengambilan Intent
-        return new Intent(activity, AntonimCreateFragment.class);
     }
 }

@@ -18,7 +18,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -63,7 +62,7 @@ public class GlobalChatUDFragment extends Fragment {
                     dataChat.setKey(noteDataSnapshot.getKey());
                     chatMessages.add(dataChat);
                 }
-                adapter = new MessageAdapter(chatMessages, getContext());
+                adapter = new MessageAdapter(chatMessages);
                 rvView.setAdapter(adapter);
             }
 

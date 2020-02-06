@@ -1,7 +1,5 @@
 package t.com.kasitomadmin.ui.readdata.antonim;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -54,7 +52,7 @@ public class AntonimReadFragment extends Fragment {
                     daftarAntonim.add(dataAntonim);
                 }
 
-                adapter = new AdapterAntonimRead(daftarAntonim, getContext());
+                adapter = new AdapterAntonimRead(daftarAntonim);
                 rvView.setAdapter(adapter);
             }
 
@@ -65,9 +63,5 @@ public class AntonimReadFragment extends Fragment {
         });
 
         return view;
-    }
-
-    public static Intent getActIntent(Activity activity) {
-        return new Intent(activity, AntonimReadFragment.class);
     }
 }

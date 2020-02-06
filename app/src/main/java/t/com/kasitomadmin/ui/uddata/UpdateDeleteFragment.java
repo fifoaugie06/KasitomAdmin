@@ -21,9 +21,9 @@ import t.com.kasitomadmin.ui.uddata.sinonimud.SinonimUDFragment;
 
 
 public class UpdateDeleteFragment extends Fragment {
-    View myFragment;
-    ViewPager viewPager;
-    TabLayout tabLayout;
+    private View myFragment;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     public UpdateDeleteFragment() {
         // Required empty public constructor

@@ -26,7 +26,6 @@ import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataKamus;
 
 public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.ViewHolder> {
-
     private ArrayList<dataKamus> daftarAntonim;
     private Context context;
     private DatabaseReference database;

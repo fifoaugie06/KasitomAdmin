@@ -1,6 +1,5 @@
 package t.com.kasitomadmin.ui.uddata.quizud;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,12 +19,9 @@ import t.com.kasitomadmin.model.dataScoreBoard;
 
 public class AdapterDialogScoreboard extends RecyclerView.Adapter<AdapterDialogScoreboard.ViewHolder> {
     private ArrayList<dataScoreBoard> dataScoreBoards;
-    private Context context;
-    private ImageView img_photo;
 
-    public AdapterDialogScoreboard(ArrayList<dataScoreBoard> dataScoreBoards, Context context) {
+    public AdapterDialogScoreboard(ArrayList<dataScoreBoard> dataScoreBoards) {
         this.dataScoreBoards = dataScoreBoards;
-        this.context = context;
     }
 
     @NonNull
@@ -58,7 +54,7 @@ public class AdapterDialogScoreboard extends RecyclerView.Adapter<AdapterDialogS
                 .load(photoUri)
                 .centerInside()
                 .resize(350, 350)
-                .into(img_photo);
+                .into(holder.img_photo);
     }
 
     @Override
@@ -68,6 +64,7 @@ public class AdapterDialogScoreboard extends RecyclerView.Adapter<AdapterDialogS
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nama, tv_correctVal, tv_wrongVal, tv_score, tv_tanggal;
+        ImageView img_photo;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

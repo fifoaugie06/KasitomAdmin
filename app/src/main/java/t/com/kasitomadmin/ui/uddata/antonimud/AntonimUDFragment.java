@@ -1,7 +1,5 @@
 package t.com.kasitomadmin.ui.uddata.antonimud;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,11 +60,6 @@ public class AntonimUDFragment extends Fragment {
                 System.out.println(databaseError.getDetails() + " " + databaseError.getMessage());
             }
         });
-
         return view;
-    }
-
-    public static Intent getActIntent(Activity activity) {
-        return new Intent(activity, AntonimUDFragment.class);
     }
 }

@@ -4,19 +4,15 @@ package t.com.kasitomadmin.ui.createdata;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,8 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataQuiz;
 
-import static android.text.TextUtils.isEmpty;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -39,7 +33,6 @@ public class QuizCreateFragment extends Fragment {
     private View view;
     private Button btn_Submit;
     private EditText edt_Soal, edt_OptionA, edt_OptionB, edt_OptionC, edt_OptionD;
-    private TextView tv_Count;
     private RadioGroup rg_option;
     private DatabaseReference database;
     private int checkedId = -1;
