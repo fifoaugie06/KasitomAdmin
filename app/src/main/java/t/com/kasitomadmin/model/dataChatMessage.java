@@ -1,8 +1,8 @@
-package t.com.kasitomadmin.ui.uddata.globalchat;
+package t.com.kasitomadmin.model;
 
 import java.util.Date;
 
-public class ChatMessage {
+public class dataChatMessage {
     private String messageText;
     private String messageUser;
     private String messageUserId;
@@ -10,11 +10,11 @@ public class ChatMessage {
     private String key;
     private long messageUserTime;
 
-    public  ChatMessage(){
+    public dataChatMessage(){
 
     }
 
-    public ChatMessage(String messageText, String messageUser, String messageUserId, String messageUserPhotoUri, String key) {
+    public dataChatMessage(String messageText, String messageUser, String messageUserId, String messageUserPhotoUri, String key) {
          this.messageText = messageText;
          this.messageUser = messageUser;
          this.messageUserId = messageUserId;

@@ -21,8 +21,6 @@ import t.com.kasitomadmin.model.dataKamus;
 
 public class AntonimCreateFragment extends Fragment {
     private DatabaseReference database;
-
-    private Button btnSubmit;
     private EditText edtJudul;
     private EditText edtArti;
     private View view;
@@ -34,6 +32,7 @@ public class AntonimCreateFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Button btnSubmit;
         view = inflater.inflate(R.layout.fragment_antonim_create, container, false);
         btnSubmit = view.findViewById(R.id.btn_submit);
         edtJudul = view.findViewById(R.id.inp_Judul);

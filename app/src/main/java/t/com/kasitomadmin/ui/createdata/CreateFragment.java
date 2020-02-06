@@ -17,7 +17,6 @@ import t.com.kasitomadmin.ui.adapter.SectionPagerAdapter;
 
 public class CreateFragment extends Fragment {
 
-    private View myFragment;
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
@@ -33,6 +32,7 @@ public class CreateFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View myFragment;
         // Inflate the layout for this fragment
         myFragment = inflater.inflate(R.layout.fragment_home, container, false);
 

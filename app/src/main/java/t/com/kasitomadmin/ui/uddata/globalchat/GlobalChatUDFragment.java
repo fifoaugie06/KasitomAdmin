@@ -30,17 +30,19 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import t.com.kasitomadmin.R;
+import t.com.kasitomadmin.model.dataChatMessage;
 
 public class GlobalChatUDFragment extends Fragment {
-    private DatabaseReference database;
     private RecyclerView rvView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<ChatMessage> chatMessages;
+    private ArrayList<dataChatMessage> dataChatMessages;
+    private DatabaseReference database;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        RecyclerView.LayoutManager layoutManager;
+
         View view = inflater.inflate(R.layout.fragment_global_chat_ud, container, false);
         setHasOptionsMenu(true);
 
@@ -54,15 +56,15 @@ public class GlobalChatUDFragment extends Fragment {
         database.child("globalchat").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                chatMessages = new ArrayList<>();
+                dataChatMessages = new ArrayList<>();
 
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
-                    ChatMessage dataChat = noteDataSnapshot.getValue(ChatMessage.class);
+                    dataChatMessage dataChat = noteDataSnapshot.getValue(dataChatMessage.class);
 
                     dataChat.setKey(noteDataSnapshot.getKey());
-                    chatMessages.add(dataChat);
+                    dataChatMessages.add(dataChat);
                 }
-                adapter = new MessageAdapter(chatMessages);
+                adapter = new MessageAdapter(dataChatMessages);
                 rvView.setAdapter(adapter);
             }
 
@@ -82,14 +84,14 @@ public class GlobalChatUDFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.navigation_delete){
+        if (item.getItemId() == R.id.navigation_delete) {
             deleteChat();
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void deleteChat() {
-        if (chatMessages.size() != 0) {
+        if (dataChatMessages.size() != 0) {
 
             final Dialog dialog;
             final TextView tv_konfirmasi;
@@ -106,7 +108,7 @@ public class GlobalChatUDFragment extends Fragment {
             bt_Ok = dialog.findViewById(R.id.bt_ok);
             bt_Cancel = dialog.findViewById(R.id.bt_cancel);
 
-            final int jumlahChat = chatMessages.size();
+            final int jumlahChat = dataChatMessages.size();
             tv_konfirmasi.setText("More than " + jumlahChat + " items will be permanently deleted");
 
             bt_Ok.setOnClickListener(new View.OnClickListener() {

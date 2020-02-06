@@ -3,9 +3,9 @@ package t.com.kasitomadmin.model;
 import java.io.Serializable;
 
 public class dataQuiz implements Serializable {
-    public String soal;
-    public String optionA, optionB, optionC, optionD, jawaban;
-    public String key;
+    private String soal;
+    private String optionA, optionB, optionC, optionD, jawaban;
+    private String key;
 
     public dataQuiz(){
 

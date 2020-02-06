@@ -3,8 +3,8 @@ package t.com.kasitomadmin.model;
 import java.util.Date;
 
 public class dataScoreBoard {
-    String nama, photoURI, correct, nilai, size, key;
-    long scoreUserTime;
+    private String nama, photoURI, correct, nilai, size, key;
+    private long scoreUserTime;
 
     public dataScoreBoard(){
 

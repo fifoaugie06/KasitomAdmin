@@ -32,7 +32,7 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
     private final Context context;
     private DatabaseReference database;
 
-    public AdapterQuizUD(ArrayList<dataQuiz> inputDatas, Context c) {
+    AdapterQuizUD(ArrayList<dataQuiz> inputDatas, Context c) {
         daftarQuiz = inputDatas;
         context = c;
     }
@@ -41,9 +41,7 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_dataquiz, parent, false);
-        ViewHolder vh = new ViewHolder(view);
-
-        return vh;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -164,11 +162,11 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         return daftarQuiz.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvNomor, tvSoal, tvOptionA, tvOptionB, tvOptionC, tvOptionD;
         ImageButton btn_edit, btn_delete;
 
-        public ViewHolder(@NonNull View itemView) {
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvSoal = itemView.findViewById(R.id.tv_soal);
             tvOptionA = itemView.findViewById(R.id.edt_optionA);

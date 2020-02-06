@@ -17,7 +17,7 @@ import t.com.kasitomadmin.model.dataKamus;
 public class AdapterSinonimRead extends RecyclerView.Adapter<AdapterSinonimRead.ViewHolder> {
     private ArrayList<dataKamus> daftarSinonim;
 
-    public AdapterSinonimRead(ArrayList<dataKamus> inputDatas){
+    AdapterSinonimRead(ArrayList<dataKamus> inputDatas){
         daftarSinonim = inputDatas;
     }
 
@@ -25,8 +25,7 @@ public class AdapterSinonimRead extends RecyclerView.Adapter<AdapterSinonimRead.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_data, parent,false);
-        ViewHolder vh = new ViewHolder(view);
-        return vh;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -50,10 +49,10 @@ public class AdapterSinonimRead extends RecyclerView.Adapter<AdapterSinonimRead.
         return daftarSinonim.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         ConstraintLayout expandableLayout;
         TextView tvJudul, tvArti;
-        public ViewHolder(@NonNull View itemView) {
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvJudul = itemView.findViewById(R.id.tv_judul);
             tvArti = itemView.findViewById(R.id.tv_arti);

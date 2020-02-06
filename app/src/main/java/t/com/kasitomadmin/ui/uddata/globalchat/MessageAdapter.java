@@ -15,12 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import t.com.kasitomadmin.R;
+import t.com.kasitomadmin.model.dataChatMessage;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
-    private ArrayList<ChatMessage> chatMessages;
+    private ArrayList<dataChatMessage> dataChatMessages;
 
-    public MessageAdapter(ArrayList<ChatMessage> chatMessages) {
-        this.chatMessages = chatMessages;
+    public MessageAdapter(ArrayList<dataChatMessage> dataChatMessages) {
+        this.dataChatMessages = dataChatMessages;
     }
 
     @NonNull
@@ -34,12 +35,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final String nama = chatMessages.get(position).getMessageUser();
-        final String chat = chatMessages.get(position).getMessageText();
-        final String photoUri = chatMessages.get(position).getMessageUserPhotoUri();
+        final String nama = dataChatMessages.get(position).getMessageUser();
+        final String chat = dataChatMessages.get(position).getMessageText();
+        final String photoUri = dataChatMessages.get(position).getMessageUserPhotoUri();
 
         SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
-        String date = formatter.format(chatMessages.get(position).getMessageUserTime());
+        String date = formatter.format(dataChatMessages.get(position).getMessageUserTime());
 
         holder.tvTime.setText(date);
         holder.tvNama.setText(nama);
@@ -53,7 +54,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return chatMessages.size();
+        return dataChatMessages.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

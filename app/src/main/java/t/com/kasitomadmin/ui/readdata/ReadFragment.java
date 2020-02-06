@@ -18,7 +18,6 @@ import t.com.kasitomadmin.ui.readdata.antonim.AntonimReadFragment;
 import t.com.kasitomadmin.ui.readdata.sinonim.SinonimReadFragment;
 
 public class ReadFragment extends Fragment {
-    private View myFragment;
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
@@ -32,8 +31,9 @@ public class ReadFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        myFragment = inflater.inflate(R.layout.fragment_home, container, false);
+        View myFragment;
 
+        myFragment = inflater.inflate(R.layout.fragment_home, container, false);
         viewPager = myFragment.findViewById(R.id.viewPager);
         tabLayout = myFragment.findViewById(R.id.tabLayout);
 

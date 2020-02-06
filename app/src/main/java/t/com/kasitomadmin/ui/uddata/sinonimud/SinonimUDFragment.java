@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,16 +22,17 @@ import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataKamus;
 
 public class SinonimUDFragment extends Fragment {
-    private DatabaseReference database;
     private RecyclerView rvView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private ArrayList<dataKamus> daftarSinonim;
-    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view;
+        RecyclerView.LayoutManager layoutManager;
+        DatabaseReference database;
+
         view = inflater.inflate(R.layout.fragment_sinonim_read, container, false);
         rvView = view.findViewById(R.id.rv_antonim);
         rvView.setHasFixedSize(true);
@@ -41,7 +43,7 @@ public class SinonimUDFragment extends Fragment {
 
         database.child("sinonim").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 daftarSinonim = new ArrayList<>();
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
@@ -57,7 +59,7 @@ public class SinonimUDFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 System.out.println(databaseError.getDetails() + " " + databaseError.getMessage());
             }
         });

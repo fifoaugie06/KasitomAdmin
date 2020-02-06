@@ -20,7 +20,7 @@ import t.com.kasitomadmin.model.dataScoreBoard;
 public class AdapterDialogScoreboard extends RecyclerView.Adapter<AdapterDialogScoreboard.ViewHolder> {
     private ArrayList<dataScoreBoard> dataScoreBoards;
 
-    public AdapterDialogScoreboard(ArrayList<dataScoreBoard> dataScoreBoards) {
+    AdapterDialogScoreboard(ArrayList<dataScoreBoard> dataScoreBoards) {
         this.dataScoreBoards = dataScoreBoards;
     }
 
@@ -28,8 +28,7 @@ public class AdapterDialogScoreboard extends RecyclerView.Adapter<AdapterDialogS
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_datascoreboard, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -62,11 +61,11 @@ public class AdapterDialogScoreboard extends RecyclerView.Adapter<AdapterDialogS
         return dataScoreBoards.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_nama, tv_correctVal, tv_wrongVal, tv_score, tv_tanggal;
         ImageView img_photo;
 
-        public ViewHolder(@NonNull View itemView) {
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             img_photo = itemView.findViewById(R.id.img_photo);
             tv_nama = itemView.findViewById(R.id.tv_nama);

@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -36,7 +35,6 @@ import t.com.kasitomadmin.model.dataQuiz;
 import t.com.kasitomadmin.model.dataScoreBoard;
 
 public class QuizUDFragment extends Fragment {
-    private View view;
     private RecyclerView rvView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -47,6 +45,8 @@ public class QuizUDFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view;
+
         view = inflater.inflate(R.layout.fragment_quiz_ud, container, false);
         setHasOptionsMenu(true);
         rvView = view.findViewById(R.id.rv_quiz);
@@ -59,7 +59,7 @@ public class QuizUDFragment extends Fragment {
         // Recyclerview UTAMA
         database.child("Quiz").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 daftarQuiz = new ArrayList<>();
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
 
@@ -73,7 +73,7 @@ public class QuizUDFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 System.out.println(databaseError.getDetails() + " " + databaseError.getMessage());
             }
         });

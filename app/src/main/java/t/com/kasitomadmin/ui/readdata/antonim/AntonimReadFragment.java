@@ -2,6 +2,7 @@ package t.com.kasitomadmin.ui.readdata.antonim;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,16 +23,17 @@ import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataKamus;
 
 public class AntonimReadFragment extends Fragment {
-    private DatabaseReference database;
     private RecyclerView rvView;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private ArrayList<dataKamus> daftarAntonim;
-    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        DatabaseReference database;
+        RecyclerView.LayoutManager layoutManager;
+        View view;
+
         view = inflater.inflate(R.layout.fragment_antonim_read, container, false);
         rvView = view.findViewById(R.id.rv_antonim);
         rvView.setHasFixedSize(true);
@@ -39,10 +41,9 @@ public class AntonimReadFragment extends Fragment {
         rvView.setLayoutManager(layoutManager);
 
         database = FirebaseDatabase.getInstance().getReference();
-
         database.child("antonim").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 daftarAntonim = new ArrayList<>();
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
@@ -57,7 +58,7 @@ public class AntonimReadFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
                 System.out.println(databaseError.getDetails() + " " + databaseError.getMessage());
             }
         });

@@ -30,7 +30,7 @@ public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.View
     private Context context;
     private DatabaseReference database;
 
-    public AdapterAntonimUD(ArrayList<dataKamus> inputDatas, Context c){
+    AdapterAntonimUD(ArrayList<dataKamus> inputDatas, Context c){
         daftarAntonim = inputDatas;
         context = c;
     }
@@ -38,10 +38,8 @@ public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_data, parent,false);
-        ViewHolder vh = new ViewHolder(view);
-
-        return vh;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_data_ud, parent,false);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -131,9 +129,9 @@ public class AdapterAntonimUD extends RecyclerView.Adapter<AdapterAntonimUD.View
         return daftarAntonim.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvJudul, tvArti;
-        public ViewHolder(@NonNull View itemView) {
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvJudul = itemView.findViewById(R.id.tv_judul);
             tvArti = itemView.findViewById(R.id.tv_arti);

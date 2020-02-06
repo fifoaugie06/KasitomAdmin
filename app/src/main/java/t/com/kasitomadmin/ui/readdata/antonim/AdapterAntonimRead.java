@@ -17,17 +17,15 @@ import t.com.kasitomadmin.model.dataKamus;
 public class AdapterAntonimRead extends RecyclerView.Adapter<AdapterAntonimRead.ViewHolder> {
     private ArrayList<dataKamus> daftarAntonim;
 
-    public AdapterAntonimRead(ArrayList<dataKamus> inputDatas){
+    AdapterAntonimRead(ArrayList<dataKamus> inputDatas) {
         daftarAntonim = inputDatas;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_data, parent,false);
-        ViewHolder vh = new ViewHolder(view);
-
-        return vh;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_data, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -39,9 +37,9 @@ public class AdapterAntonimRead extends RecyclerView.Adapter<AdapterAntonimRead.
         holder.tvArti.setText(arti);
 
         boolean isExpanded = daftarAntonim.get(position).isExpanded();
-        if (isExpanded){
+        if (isExpanded) {
             holder.expandableLayout.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             holder.expandableLayout.setVisibility(View.GONE);
         }
     }
@@ -51,10 +49,11 @@ public class AdapterAntonimRead extends RecyclerView.Adapter<AdapterAntonimRead.
         return daftarAntonim.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         ConstraintLayout expandableLayout;
         TextView tvJudul, tvArti;
-        public ViewHolder(@NonNull View itemView) {
+
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvJudul = itemView.findViewById(R.id.tv_judul);
             tvArti = itemView.findViewById(R.id.tv_arti);

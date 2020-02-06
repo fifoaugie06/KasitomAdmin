@@ -21,7 +21,6 @@ import t.com.kasitomadmin.ui.uddata.sinonimud.SinonimUDFragment;
 
 
 public class UpdateDeleteFragment extends Fragment {
-    private View myFragment;
     private ViewPager viewPager;
     private TabLayout tabLayout;
 
@@ -35,7 +34,7 @@ public class UpdateDeleteFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
+        View myFragment;
         myFragment = inflater.inflate(R.layout.fragment_home, container, false);
 
         viewPager = myFragment.findViewById(R.id.viewPager);
