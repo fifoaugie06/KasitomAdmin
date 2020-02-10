@@ -1,9 +1,13 @@
 package t.com.kasitomadmin.ui.uddata.sinonimud;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -32,9 +36,12 @@ public class SinonimUDFragment extends Fragment {
         View view;
         RecyclerView.LayoutManager layoutManager;
         DatabaseReference database;
+        EditText edtSearch;
 
         view = inflater.inflate(R.layout.fragment_sinonim_read, container, false);
         rvView = view.findViewById(R.id.rv_antonim);
+        edtSearch = view.findViewById(R.id.edt_searchas);
+
         rvView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         rvView.setLayoutManager(layoutManager);
@@ -64,6 +71,38 @@ public class SinonimUDFragment extends Fragment {
             }
         });
 
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         return view;
+    }
+
+    private void filter(String newText) {
+        ArrayList<dataKamus> dataKamusList = new ArrayList<>();
+        try {
+            for (dataKamus s : daftarSinonim) {
+                if (s.getJudul().toLowerCase().contains(newText.toLowerCase())) {
+                    dataKamusList.add(s);
+                }
+            }
+            adapter = new AdapterSinonimUD(dataKamusList, getContext());
+            rvView.setAdapter(adapter);
+        } catch (NullPointerException e) {
+            Log.i("e", String.valueOf(e));
+        }
     }
 }

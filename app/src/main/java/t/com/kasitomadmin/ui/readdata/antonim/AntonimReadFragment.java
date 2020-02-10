@@ -7,9 +7,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,9 +37,12 @@ public class AntonimReadFragment extends Fragment {
         DatabaseReference database;
         RecyclerView.LayoutManager layoutManager;
         View view;
+        EditText edtSearch;
 
         view = inflater.inflate(R.layout.fragment_antonim_read, container, false);
         rvView = view.findViewById(R.id.rv_antonim);
+        edtSearch = view.findViewById(R.id.edt_searchas);
+
         rvView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         rvView.setLayoutManager(layoutManager);
@@ -63,6 +70,38 @@ public class AntonimReadFragment extends Fragment {
             }
         });
 
+        edtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         return view;
+    }
+
+    private void filter(String newText) {
+        ArrayList<dataKamus> dataKamusList = new ArrayList<>();
+        try {
+            for (dataKamus s : daftarAntonim) {
+                if (s.getJudul().toLowerCase().contains(newText.toLowerCase())) {
+                    dataKamusList.add(s);
+                }
+            }
+            adapter = new AdapterAntonimRead(dataKamusList);
+            rvView.setAdapter(adapter);
+        } catch (NullPointerException e) {
+            Log.i("e", String.valueOf(e));
+        }
     }
 }
