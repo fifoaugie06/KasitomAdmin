@@ -107,7 +107,7 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         final Window window = dialog.getWindow();
         window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
-        rgOptions = dialog.findViewById(R.id.option_group);
+//        rgOptions = dialog.findViewById(R.id.option_group);
         btnUpdate = dialog.findViewById(R.id.btn_submit);
 
         edtSoal = dialog.findViewById(R.id.edt_soal);
@@ -116,10 +116,10 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         edtOptC = dialog.findViewById(R.id.edt_optionC);
         edtOptD = dialog.findViewById(R.id.edt_optionD);
 
-        ansOptA = dialog.findViewById(R.id.ans_OptionA);
-        ansOptB = dialog.findViewById(R.id.ans_OptionB);
-        ansOptC = dialog.findViewById(R.id.ans_OptionC);
-        ansOptD = dialog.findViewById(R.id.ans_OptionD);
+//        ansOptA = dialog.findViewById(R.id.ans_OptionA);
+//        ansOptB = dialog.findViewById(R.id.ans_OptionB);
+//        ansOptC = dialog.findViewById(R.id.ans_OptionC);
+//        ansOptD = dialog.findViewById(R.id.ans_OptionD);
 
         edtSoal.setText(soal);
         edtOptA.setText(optionA);
@@ -127,15 +127,15 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         edtOptC.setText(optionC);
         edtOptD.setText(optionD);
 
-        if (optionA.equals(jawaban)) {
-            ansOptA.setChecked(true);
-        } else if (optionB.equals(jawaban)) {
-            ansOptB.setChecked(true);
-        } else if (optionC.equals(jawaban)) {
-            ansOptC.setChecked(true);
-        } else {
-            ansOptD.setChecked(true);
-        }
+//        if (optionA.equals(jawaban)) {
+//            ansOptA.setChecked(true);
+//        } else if (optionB.equals(jawaban)) {
+//            ansOptB.setChecked(true);
+//        } else if (optionC.equals(jawaban)) {
+//            ansOptC.setChecked(true);
+//        } else {
+//            ansOptD.setChecked(true);
+//        }
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +146,7 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
                 dataQuiz.setOptionB(edtOptB.getText().toString());
                 dataQuiz.setOptionC(edtOptC.getText().toString());
                 dataQuiz.setOptionD(edtOptD.getText().toString());
-                dataQuiz.setJawaban(getKeyAnswer(rgOptions, edtOptA, edtOptB, edtOptC, edtOptD)); // getkeyfrom radiobutton
+         //       dataQuiz.setJawaban(getKeyAnswer(rgOptions, edtOptA, edtOptB, edtOptC, edtOptD)); // getkeyfrom radiobutton
                 dataQuiz.setKey(key);
                 //getKeyAnswer(rgOptions, edtOptA, edtOptB, edtOptC, edtOptD);
                 updateKamus(dataQuiz); //updatekamus
@@ -158,20 +158,20 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         int checkedId = -1;
         checkedId = rgOptions.getCheckedRadioButtonId();
         String keyAnswer = null;
-        switch (checkedId) {
-            case R.id.ans_OptionA:
-                keyAnswer = edtOptA.getText().toString();
-                break;
-            case R.id.ans_OptionB:
-                keyAnswer = edtOptB.getText().toString();
-                break;
-            case R.id.ans_OptionC:
-                keyAnswer = edtOptC.getText().toString();
-                break;
-            case R.id.ans_OptionD:
-                keyAnswer = edtOptD.getText().toString();
-                break;
-        }
+//        switch (checkedId) {
+//            case R.id.ans_OptionA:
+//                keyAnswer = edtOptA.getText().toString();
+//                break;
+//            case R.id.ans_OptionB:
+//                keyAnswer = edtOptB.getText().toString();
+//                break;
+//            case R.id.ans_OptionC:
+//                keyAnswer = edtOptC.getText().toString();
+//                break;
+//            case R.id.ans_OptionD:
+//                keyAnswer = edtOptD.getText().toString();
+//                break;
+//        }
         return keyAnswer;
     }
 

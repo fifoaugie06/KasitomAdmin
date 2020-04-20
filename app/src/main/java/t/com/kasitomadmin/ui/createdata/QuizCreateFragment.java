@@ -4,6 +4,7 @@ package t.com.kasitomadmin.ui.createdata;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,11 +35,10 @@ public class QuizCreateFragment extends Fragment {
     private View view;
     private Button btn_Submit;
     private EditText edt_Soal, edt_OptionA, edt_OptionB, edt_OptionC, edt_OptionD;
-    private RadioGroup rg_option;
     private DatabaseReference database;
-    private int checkedId = -1;
+    private Spinner spinnerOption;
+    private int checkedId;
     private String keyAnswer;
-    private long count;
 
     public QuizCreateFragment() {
         // Required empty public constructor
@@ -47,22 +48,24 @@ public class QuizCreateFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_quiz_create, container, false);
+        database = FirebaseDatabase.getInstance().getReference();
 
-        initView();
+        btn_Submit = view.findViewById(R.id.btn_submit);
 
-        database.child("Quiz").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                count = (dataSnapshot.getChildrenCount()) + 1;
-            }
+        edt_Soal = view.findViewById(R.id.edt_soal);
+        edt_OptionA = view.findViewById(R.id.edt_optionA);
+        edt_OptionB = view.findViewById(R.id.edt_optionB);
+        edt_OptionC = view.findViewById(R.id.edt_optionC);
+        edt_OptionD = view.findViewById(R.id.edt_optionD);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+        spinnerOption = view.findViewById(R.id.sp_option);
 
-            }
-        });
+        return view;
+    }
 
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         btn_Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,22 +73,15 @@ public class QuizCreateFragment extends Fragment {
                         && !isEmpty(edt_OptionB.getText().toString()) && !isEmpty(edt_OptionC.getText().toString())
                         && !isEmpty(edt_OptionD.getText().toString())) {
 
-                    getKeyAnswer();
+                    submitQuiz(new dataQuiz(edt_Soal.getText().toString(), edt_OptionA.getText().toString(),
+                            edt_OptionB.getText().toString(), edt_OptionC.getText().toString(),
+                            edt_OptionD.getText().toString(), getKeyAnswer()));
 
-                    if (checkedId == -1) {
-                        Toast.makeText(getContext(), "Pastikan semua terisi !!!", Toast.LENGTH_LONG).show();
-                    } else {
-                        submitQuiz(new dataQuiz(edt_Soal.getText().toString(), edt_OptionA.getText().toString(),
-                                edt_OptionB.getText().toString(), edt_OptionC.getText().toString(),
-                                edt_OptionD.getText().toString(), keyAnswer));
-                        count++;
-                    }
-                }else {
+                } else {
                     Toast.makeText(getContext(), "Pastikan semua terisi !!!", Toast.LENGTH_LONG).show();
                 }
             }
         });
-        return view;
     }
 
     private void submitQuiz(dataQuiz dataQuiz) {
@@ -105,40 +101,26 @@ public class QuizCreateFragment extends Fragment {
         });
     }
 
-    private void getKeyAnswer() {
-        checkedId = rg_option.getCheckedRadioButtonId();
+    private String getKeyAnswer() {
+        checkedId = (int) spinnerOption.getSelectedItemId();
         switch (checkedId) {
-            case R.id.ans_OptionA:
+            case 0:
                 keyAnswer = edt_OptionA.getText().toString();
                 break;
-            case R.id.ans_OptionB:
+            case 1:
                 keyAnswer = edt_OptionB.getText().toString();
                 break;
-            case R.id.ans_OptionC:
+            case 2:
                 keyAnswer = edt_OptionC.getText().toString();
                 break;
-            case R.id.ans_OptionD:
+            case 3:
                 keyAnswer = edt_OptionD.getText().toString();
                 break;
         }
+        return keyAnswer;
     }
 
     private boolean isEmpty(String s) {
         return TextUtils.isEmpty(s);
     }
-
-    private void initView() {
-        database = FirebaseDatabase.getInstance().getReference();
-
-        btn_Submit = view.findViewById(R.id.btn_submit);
-
-        edt_Soal = view.findViewById(R.id.edt_soal);
-        edt_OptionA = view.findViewById(R.id.edt_optionA);
-        edt_OptionB = view.findViewById(R.id.edt_optionB);
-        edt_OptionC = view.findViewById(R.id.edt_optionC);
-        edt_OptionD = view.findViewById(R.id.edt_optionD);
-
-        rg_option = view.findViewById(R.id.option_group);
-    }
-
 }

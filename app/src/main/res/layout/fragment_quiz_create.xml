@@ -4,18 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.createdata.QuizCreateFragment"
+    android:overScrollMode="never"
     android:paddingStart="@dimen/activity_horizontal_margin"
-    android:paddingEnd="@dimen/activity_horizontal_margin"
     android:paddingTop="8dp"
+    android:paddingEnd="@dimen/activity_horizontal_margin"
     android:paddingBottom="8dp"
     android:scrollbars="none"
-    android:overScrollMode="never">
+    tools:context=".ui.createdata.QuizCreateFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
+
+        <Spinner
+            android:id="@+id/sp_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:entries="@array/option"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            app:layout_constraintStart_toStartOf="@+id/edt_optionD"
+            app:layout_constraintTop_toBottomOf="@+id/edt_optionD">
+        </Spinner>
+
+        <Spinner
+            android:id="@+id/sp_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/level"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            app:layout_constraintBottom_toBottomOf="@+id/sp_option"
+            app:layout_constraintEnd_toEndOf="@+id/edt_optionD"
+            app:layout_constraintTop_toTopOf="@+id/sp_option">
+
+        </Spinner>
 
 
         <Button
@@ -24,108 +49,62 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/Submit"
-            app:layout_constraintEnd_toEndOf="@+id/option_group"
-            app:layout_constraintStart_toStartOf="@+id/option_group"
-            app:layout_constraintTop_toBottomOf="@+id/option_group" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/sp_option"
+            app:layout_constraintTop_toBottomOf="@+id/sp_option" />
 
         <EditText
-            android:lines="1"
             android:id="@+id/edt_optionA"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:hint="@string/optionA"
+            android:lines="1"
             app:layout_constraintStart_toStartOf="@+id/edt_soal"
             app:layout_constraintTop_toBottomOf="@+id/edt_soal" />
 
         <EditText
-            android:lines="1"
             android:id="@+id/edt_optionB"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:hint="@string/optionB"
+            android:lines="1"
             app:layout_constraintStart_toStartOf="@+id/edt_optionA"
             app:layout_constraintTop_toBottomOf="@+id/edt_optionA" />
 
         <EditText
-            android:lines="1"
             android:id="@+id/edt_optionC"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:hint="@string/optionC"
+            android:lines="1"
             app:layout_constraintStart_toStartOf="@+id/edt_optionB"
             app:layout_constraintTop_toBottomOf="@+id/edt_optionB" />
 
         <EditText
-            android:lines="1"
             android:id="@+id/edt_optionD"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:hint="@string/optionD"
+            android:lines="1"
             app:layout_constraintStart_toStartOf="@+id/edt_optionC"
             app:layout_constraintTop_toBottomOf="@+id/edt_optionC" />
 
         <EditText
-            android:maxLines="4"
             android:id="@+id/edt_soal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"
             android:hint="@string/MasukkanSoal"
             android:lines="4"
+            android:maxLines="4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-             />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioGroup
-            android:id="@+id/option_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
-
-            <RadioButton
-                android:id="@+id/ans_OptionA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/optionA" />
-
-            <RadioButton
-                android:id="@+id/ans_OptionB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/optionB" />
-
-            <RadioButton
-                android:id="@+id/ans_OptionC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/optionC" />
-
-            <RadioButton
-                android:id="@+id/ans_OptionD"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/optionD" />
-
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/pilihOption"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_optionD" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

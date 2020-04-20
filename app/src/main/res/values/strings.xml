@@ -16,4 +16,21 @@
     <string name="optionC">Option C</string>
     <string name="optionD">Option D</string>
     <string name="pilihOption">Jawaban Benar ?</string>
+
+    <string-array name="option">
+        <item>Option A</item>
+        <item>Option B</item>
+        <item>Option C</item>
+        <item>Option D</item>
+    </string-array>
+
+    <string-array name="level">
+        <item>A - 1</item>
+        <item>A - 2</item>
+        <item>A - 3</item>
+        <item>A - 4</item>
+        <item>A - 5</item>
+        <item>A - 6</item>
+        <item>A - 7</item>
+    </string-array>
 </resources>
