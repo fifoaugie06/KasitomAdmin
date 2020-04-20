@@ -8,18 +8,24 @@
     app:cardCornerRadius="8dp"
     app:cardUseCompatPadding="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:padding="6dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/tv_photchat"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            tools:background="@color/colorAccent" />
+
+        <LinearLayout
             android:id="@+id/containerKonten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            app:layout_constraintStart_toEndOf="@+id/tv_photchat"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_judul"
@@ -29,43 +35,25 @@
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Bohong - Jujur" />
 
             <TextView
                 android:id="@+id/tv_arti"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLength="100"
                 android:maxLines="10"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_judul"
                 tools:text="bviwofnaiwfnawfoaiwaiosmasicfnawnawfwi" />
 
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="9sp"
                 android:layout_marginTop="6dp"
-                app:layout_constraintStart_toStartOf="@+id/tv_arti"
-                app:layout_constraintTop_toBottomOf="@+id/tv_arti"
+                android:textSize="9sp"
                 tools:text="7:40 pm" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
-
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/tv_photchat"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/colorAccent"/>
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

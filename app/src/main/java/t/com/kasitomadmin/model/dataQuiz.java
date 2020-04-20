@@ -51,4 +51,28 @@ public class dataQuiz implements Serializable {
     public String getKey() {
         return key;
     }
+
+    public void setSoal(String soal) {
+        this.soal = soal;
+    }
+
+    public void setOptionA(String optionA) {
+        this.optionA = optionA;
+    }
+
+    public void setOptionB(String optionB) {
+        this.optionB = optionB;
+    }
+
+    public void setOptionC(String optionC) {
+        this.optionC = optionC;
+    }
+
+    public void setOptionD(String optionD) {
+        this.optionD = optionD;
+    }
+
+    public void setJawaban(String jawaban) {
+        this.jawaban = jawaban;
+    }
 }
