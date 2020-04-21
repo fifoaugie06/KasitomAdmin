@@ -1,4 +1,4 @@
-package t.com.kasitomadmin.ui.uddata.quizud;
+package t.com.kasitomadmin.ui.uddata.quizud.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -12,8 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,15 +29,16 @@ import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataQuiz;
 
 public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder> {
-
     private ArrayList<dataQuiz> daftarQuiz;
     private final Context context;
     private DatabaseReference database;
     private Dialog dialog;
+    private String key_level;
 
-    AdapterQuizUD(ArrayList<dataQuiz> inputDatas, Context c) {
+    public AdapterQuizUD(ArrayList<dataQuiz> inputDatas, Context c, String key_level) {
         daftarQuiz = inputDatas;
         context = c;
+        this.key_level = key_level;
     }
 
     @NonNull
@@ -96,9 +96,8 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
     private void showDialogUpdateKamus(final String key, final String soal, final String optionA, final String optionB,
                                        final String optionC, final String optionD, final String jawaban) {
         final EditText edtSoal, edtOptA, edtOptB, edtOptC, edtOptD;
-        final RadioGroup rgOptions;
-        final RadioButton ansOptA, ansOptB, ansOptC, ansOptD;
         final Button btnUpdate;
+        final Spinner sp_option, sp_level;
 
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.fragment_quiz_create);
@@ -107,7 +106,6 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         final Window window = dialog.getWindow();
         window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
-//        rgOptions = dialog.findViewById(R.id.option_group);
         btnUpdate = dialog.findViewById(R.id.btn_submit);
 
         edtSoal = dialog.findViewById(R.id.edt_soal);
@@ -116,10 +114,10 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         edtOptC = dialog.findViewById(R.id.edt_optionC);
         edtOptD = dialog.findViewById(R.id.edt_optionD);
 
-//        ansOptA = dialog.findViewById(R.id.ans_OptionA);
-//        ansOptB = dialog.findViewById(R.id.ans_OptionB);
-//        ansOptC = dialog.findViewById(R.id.ans_OptionC);
-//        ansOptD = dialog.findViewById(R.id.ans_OptionD);
+        sp_option = dialog.findViewById(R.id.sp_option);
+        sp_level = dialog.findViewById(R.id.sp_level);
+
+        sp_level.setVisibility(View.GONE);
 
         edtSoal.setText(soal);
         edtOptA.setText(optionA);
@@ -127,15 +125,15 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
         edtOptC.setText(optionC);
         edtOptD.setText(optionD);
 
-//        if (optionA.equals(jawaban)) {
-//            ansOptA.setChecked(true);
-//        } else if (optionB.equals(jawaban)) {
-//            ansOptB.setChecked(true);
-//        } else if (optionC.equals(jawaban)) {
-//            ansOptC.setChecked(true);
-//        } else {
-//            ansOptD.setChecked(true);
-//        }
+        if (optionA.equals(jawaban)) {
+            sp_option.setSelection(0);
+        } else if (optionB.equals(jawaban)) {
+            sp_option.setSelection(1);
+        } else if (optionC.equals(jawaban)) {
+            sp_option.setSelection(2);
+        } else {
+            sp_option.setSelection(3);
+        }
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,39 +144,38 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
                 dataQuiz.setOptionB(edtOptB.getText().toString());
                 dataQuiz.setOptionC(edtOptC.getText().toString());
                 dataQuiz.setOptionD(edtOptD.getText().toString());
-         //       dataQuiz.setJawaban(getKeyAnswer(rgOptions, edtOptA, edtOptB, edtOptC, edtOptD)); // getkeyfrom radiobutton
-                dataQuiz.setKey(key);
-                //getKeyAnswer(rgOptions, edtOptA, edtOptB, edtOptC, edtOptD);
-                updateKamus(dataQuiz); //updatekamus
+                dataQuiz.setJawaban(getKeyAnswer(sp_option, edtOptA, edtOptB, edtOptC, edtOptD)); // getkeyfrom radiobutton
+                getKeyAnswer(sp_option, edtOptA, edtOptB, edtOptC, edtOptD);
+                updateKamus(dataQuiz, key); //updatekamus
             }
         });
     }
 
-    private String getKeyAnswer(RadioGroup rgOptions, EditText edtOptA, EditText edtOptB, EditText edtOptC, EditText edtOptD) {
-        int checkedId = -1;
-        checkedId = rgOptions.getCheckedRadioButtonId();
+    private String getKeyAnswer(Spinner sp_option, EditText edtOptA, EditText edtOptB, EditText edtOptC, EditText edtOptD) {
+        int checkedId = (int) sp_option.getSelectedItemId();
         String keyAnswer = null;
-//        switch (checkedId) {
-//            case R.id.ans_OptionA:
-//                keyAnswer = edtOptA.getText().toString();
-//                break;
-//            case R.id.ans_OptionB:
-//                keyAnswer = edtOptB.getText().toString();
-//                break;
-//            case R.id.ans_OptionC:
-//                keyAnswer = edtOptC.getText().toString();
-//                break;
-//            case R.id.ans_OptionD:
-//                keyAnswer = edtOptD.getText().toString();
-//                break;
-//        }
+        switch (checkedId) {
+            case 0:
+                keyAnswer = edtOptA.getText().toString();
+                break;
+            case 1:
+                keyAnswer = edtOptB.getText().toString();
+                break;
+            case 2:
+                keyAnswer = edtOptC.getText().toString();
+                break;
+            case 3:
+                keyAnswer = edtOptD.getText().toString();
+                break;
+        }
         return keyAnswer;
     }
 
-    private void updateKamus(dataQuiz dataQuiz) {
+    private void updateKamus(dataQuiz dataQuiz, String key) {
         database = FirebaseDatabase.getInstance().getReference();
         database.child("Quiz")
-                .child(dataQuiz.getKey())
+                .child(key_level)
+                .child(key)
                 .setValue(dataQuiz)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -219,7 +216,7 @@ public class AdapterQuizUD extends RecyclerView.Adapter<AdapterQuizUD.ViewHolder
             public void onClick(final View view2) {
                 //Log.i("apaa", String.valueOf(view2));
                 database = FirebaseDatabase.getInstance().getReference();
-                database.child("Quiz")
+                database.child("Quiz").child(key_level)
                         .child(key)
                         .removeValue()
                         .addOnSuccessListener(new OnSuccessListener<Void>() {

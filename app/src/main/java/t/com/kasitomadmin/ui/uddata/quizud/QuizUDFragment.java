@@ -4,10 +4,13 @@ import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +36,8 @@ import java.util.Comparator;
 import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataQuiz;
 import t.com.kasitomadmin.model.dataScoreBoard;
+import t.com.kasitomadmin.ui.uddata.quizud.adapter.AdapterDialogScoreboard;
+import t.com.kasitomadmin.ui.uddata.quizud.adapter.AdapterQuizUD;
 
 public class QuizUDFragment extends Fragment {
     private RecyclerView rvView;
@@ -41,23 +46,34 @@ public class QuizUDFragment extends Fragment {
     private ArrayList<dataQuiz> daftarQuiz;
     private ArrayList<dataScoreBoard> daftarScoreBoard;
     private DatabaseReference database;
+    private View view;
+    private String key_level;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view;
-
         view = inflater.inflate(R.layout.fragment_quiz_ud, container, false);
-        setHasOptionsMenu(true);
         rvView = view.findViewById(R.id.rv_quiz);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setHasOptionsMenu(true);
         rvView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
         rvView.setLayoutManager(layoutManager);
 
         database = FirebaseDatabase.getInstance().getReference();
+        Bundle arguments = getArguments();
+        key_level = arguments.getString("key_level");
 
         // Recyclerview UTAMA
-        database.child("Quiz").addValueEventListener(new ValueEventListener() {
+        database.child("Quiz").child(key_level).addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 daftarQuiz = new ArrayList<>();
@@ -68,7 +84,7 @@ public class QuizUDFragment extends Fragment {
 
                     daftarQuiz.add(dataQuiz);
                 }
-                adapter = new AdapterQuizUD(daftarQuiz, getActivity());
+                adapter = new AdapterQuizUD(daftarQuiz, getActivity(), key_level);
                 rvView.setAdapter(adapter);
             }
 
@@ -77,7 +93,20 @@ public class QuizUDFragment extends Fragment {
                 System.out.println(databaseError.getDetails() + " " + databaseError.getMessage());
             }
         });
-        return view;
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("switch level", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -88,7 +117,7 @@ public class QuizUDFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.navigation_scoreboard){
+        if (item.getItemId() == R.id.navigation_scoreboard) {
             showScoreBoard();
         }
         return super.onOptionsItemSelected(item);
@@ -126,14 +155,14 @@ public class QuizUDFragment extends Fragment {
                 Collections.sort(daftarScoreBoard, new Comparator<dataScoreBoard>() {
                     @Override
                     public int compare(dataScoreBoard lhs, dataScoreBoard rhs) {
-                        if (Float.parseFloat(lhs.getNilai()) > Float.parseFloat(rhs.getNilai())){
-                            return  -1;
-                        }else {
+                        if (Float.parseFloat(lhs.getNilai()) > Float.parseFloat(rhs.getNilai())) {
+                            return -1;
+                        } else {
                             return 1;
                         }
                     }
                 });
-                adapter = new AdapterDialogScoreboard(daftarScoreBoard);
+                adapter = new AdapterDialogScoreboard(daftarScoreBoard, key_level);
                 rvView.setAdapter(adapter);
             }
 

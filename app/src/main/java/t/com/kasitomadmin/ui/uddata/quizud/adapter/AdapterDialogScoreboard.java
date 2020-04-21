@@ -1,4 +1,4 @@
-package t.com.kasitomadmin.ui.uddata.quizud;
+package t.com.kasitomadmin.ui.uddata.quizud.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +19,11 @@ import t.com.kasitomadmin.model.dataScoreBoard;
 
 public class AdapterDialogScoreboard extends RecyclerView.Adapter<AdapterDialogScoreboard.ViewHolder> {
     private ArrayList<dataScoreBoard> dataScoreBoards;
+    private String key_level;
 
-    AdapterDialogScoreboard(ArrayList<dataScoreBoard> dataScoreBoards) {
+    public AdapterDialogScoreboard(ArrayList<dataScoreBoard> dataScoreBoards, String key_level) {
         this.dataScoreBoards = dataScoreBoards;
+        this.key_level = key_level;
     }
 
     @NonNull

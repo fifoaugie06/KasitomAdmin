@@ -13,17 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.model.dataQuiz;
@@ -36,8 +32,8 @@ public class QuizCreateFragment extends Fragment {
     private Button btn_Submit;
     private EditText edt_Soal, edt_OptionA, edt_OptionB, edt_OptionC, edt_OptionD;
     private DatabaseReference database;
-    private Spinner spinnerOption;
-    private int checkedId;
+    private Spinner spinnerOption, spinnerLevel;
+    private int selectedId;
     private String keyAnswer;
 
     public QuizCreateFragment() {
@@ -59,6 +55,7 @@ public class QuizCreateFragment extends Fragment {
         edt_OptionD = view.findViewById(R.id.edt_optionD);
 
         spinnerOption = view.findViewById(R.id.sp_option);
+        spinnerLevel = view.findViewById(R.id.sp_level);
 
         return view;
     }
@@ -75,7 +72,7 @@ public class QuizCreateFragment extends Fragment {
 
                     submitQuiz(new dataQuiz(edt_Soal.getText().toString(), edt_OptionA.getText().toString(),
                             edt_OptionB.getText().toString(), edt_OptionC.getText().toString(),
-                            edt_OptionD.getText().toString(), getKeyAnswer()));
+                            edt_OptionD.getText().toString(), getKeyAnswer()), "Level " + spinnerLevel.getSelectedItem());
 
                 } else {
                     Toast.makeText(getContext(), "Pastikan semua terisi !!!", Toast.LENGTH_LONG).show();
@@ -84,8 +81,9 @@ public class QuizCreateFragment extends Fragment {
         });
     }
 
-    private void submitQuiz(dataQuiz dataQuiz) {
+    private void submitQuiz(dataQuiz dataQuiz, String level) {
         database.child("Quiz")
+                .child(level)
                 .push()
                 .setValue(dataQuiz).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -102,8 +100,8 @@ public class QuizCreateFragment extends Fragment {
     }
 
     private String getKeyAnswer() {
-        checkedId = (int) spinnerOption.getSelectedItemId();
-        switch (checkedId) {
+        selectedId = (int) spinnerOption.getSelectedItemId();
+        switch (selectedId) {
             case 0:
                 keyAnswer = edt_OptionA.getText().toString();
                 break;

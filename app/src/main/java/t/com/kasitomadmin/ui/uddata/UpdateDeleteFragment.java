@@ -16,6 +16,7 @@ import t.com.kasitomadmin.R;
 import t.com.kasitomadmin.ui.adapter.SectionPagerAdapter;
 import t.com.kasitomadmin.ui.uddata.antonimud.AntonimUDFragment;
 import t.com.kasitomadmin.ui.uddata.globalchat.GlobalChatUDFragment;
+import t.com.kasitomadmin.ui.uddata.quizud.QuizSwitchLevelFragment;
 import t.com.kasitomadmin.ui.uddata.quizud.QuizUDFragment;
 import t.com.kasitomadmin.ui.uddata.sinonimud.SinonimUDFragment;
 
@@ -74,7 +75,7 @@ public class UpdateDeleteFragment extends Fragment {
         adapter.addFragment(new AntonimUDFragment(), "Antonim");
         adapter.addFragment(new SinonimUDFragment(), "Sinonim");
         adapter.addFragment(new GlobalChatUDFragment(), "GChat");
-        adapter.addFragment(new QuizUDFragment(), "Quiz");
+        adapter.addFragment(new QuizSwitchLevelFragment(), "Quiz");
 
         viewPager.setAdapter(adapter);
     }
